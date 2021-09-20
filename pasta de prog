@@ -1,0 +1,79 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+#include<time.h>
+/*Uma empresa de manutenção de equipamentos deseja fazer um estudo em relação um conjunto de
+250 Ordens de Serviço executadas, para isso ofereceu um arquivo contendo o Número da OS(1354-
+1603) a quantidade de dias previstos par a entrega, a quantidade de dias gastos e o tipo do serviço (1 –
+Manutenção ou 2 – Reparo) . Faça um programa que gere aleatoriamente as informações e calcule: O
+percentual de ordens de serviço de cada tipo entregue fora do prazo e o número da OS com maior
+atraso.*/
+struct ordem{
+	int nos,dprev,dgas;
+	char tipo[10];
+	int ts;
+};
+void preencher (int n, ordem*os){
+	for(int i=0;i<n;i++){
+		os[i].nos=rand()%1105+1354;
+		os[i].dprev=rand()%11+5;
+		os[i].dgas=rand()%16+5;
+		os[i].ts=rand()%2;
+		if(os[i].ts==0)
+		sprintf(os[i].tipo,"Manutencao");
+		else
+		sprintf(os[i].tipo,"Reparo");
+	}
+}
+void imprimir (int n, ordem*os){
+	for(int i=0;i<n;i++){
+	printf("%d\t%d\t%d\t%d\t%s\n",i+1,os[i].nos,os[i].dprev,os[i].dgas,os[i].tipo);
+	}
+}
+void prazo(int n, ordem*os){
+	float totm=0,totmgas=0,pmg,prg,totrgas=0,totr=0;
+	for(int i=0;i<n;i++){
+		if(os[i].ts==0){
+			totm++;
+			if(os[i].dgas>os[i].dprev){
+				totmgas++;
+			}
+		}
+		if(os[i].ts==1){
+			totr++;
+			if(os[i].dgas>os[i].dprev){
+				totrgas++;
+			}
+		}
+	}
+	pmg=totmgas/totm*100;
+	printf("Percentual de manuteçao fora do prazo: %.2f%%",pmg);
+	prg=totrgas/totr*100;
+	printf("\nPercentual de reparo fora do prazo: %.2f%%",prg);
+}
+int q3(int n, ordem*os){
+	int temp=0,maior=0,maiori=0;
+	for(int i=0;i<n;i++){
+		temp=os[i].dgas-os[i].dprev;
+		if(temp>maior){
+			maior=temp;
+			maiori=i;
+		}
+	}
+	return maiori;
+}
+
+void resultado(int rmaior, ordem*os){
+		printf("\n%d\t%d\t%d\t%s\n",os[rmaior].nos,os[rmaior].dprev,os[rmaior].dgas,os[rmaior].tipo);
+		
+}
+main(){
+	int rmaior=0;
+	srand(time(NULL));
+	ordem os[250];
+	preencher(250,os);
+	imprimir(250,os);
+	prazo(250,os);
+	rmaior = q3(250,os);
+	resultado(rmaior,os);
+}
