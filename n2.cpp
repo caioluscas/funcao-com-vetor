@@ -31,7 +31,7 @@ void preencher(int n, familia*x){
 	}
 	
 	if(x[i].bnf==1){
-		sprintf(x[i].beneficiario,"1"); //Bolsa família
+		sprintf(x[i].beneficiario,"1"); //Bolsa famÃ­lia
 	}
 	if(x[i].bnf==2){
 		sprintf(x[i].beneficiario,"2");//Seguro Desemprego
@@ -49,9 +49,9 @@ void imprime(int n, familia*x){
 	for(int i=0;i<n;i++){
 			printf("%d\t%d\t%s\t%s\t  %d\t%.0f\t%s\n",i+1001,x[i].tm,x[i].tipo_cidadao,x[i].beneficiario,x[i].r,x[i].rp,x[i].qt3);
 	}
-	printf("Percentual de Solicitantes com renda familiar acima de meio salário mínimo por pessoa: %.2f%%\n",prm);
-	printf("Percentual de solicitações aceitas com o Bolsa Família: %.2f%%\n",pac);
-	printf("Percentual de solicitações Negadas por já estarem recebendo outros benefícios %.2f%%",pn);
+	printf("Percentual de Solicitantes com renda familiar acima de meio salÃ¡rio mÃ­nimo por pessoa: %.2f%%\n",prm);
+	printf("Percentual de solicitaÃ§Ãµes aceitas com o Bolsa FamÃ­lia: %.2f%%\n",pac);
+	printf("Percentual de solicitaÃ§Ãµes Negadas por jÃ¡ estarem recebendo outros benefÃ­cios %.2f%%",pn);
 	
 }
 	
@@ -115,20 +115,20 @@ void gravacao(int n, familia*x){
 		exit(1);//abortar programa
 	}
 	int i;
-	//fprintf é uma f#unção utilizada para imprimir cadeia de caracteres formatadas em um fluxo.
+	//fprintf Ã© uma f#unÃ§Ã£o utilizada para imprimir cadeia de caracteres formatadas em um fluxo.
 	for(int i=0;i<n;i++){
 			fprintf(arqtr,"%d\t%d\t%s\t%s\t  %d\t%.0f\t%s\n",i+1001,x[i].tm,x[i].tipo_cidadao,x[i].beneficiario,x[i].r,x[i].rp,x[i].qt3);
 	}
-	fprintf(arqtr,"Percentual de Solicitantes com renda familiar acima de meio salário mínimo por pessoa: %.2f%%\n",prm);
-	fprintf(arqtr,"Percentual de solicitações aceitas com o Bolsa Família: %.2f%%\n",pac);
-	fprintf(arqtr,"Percentual de solicitações Negadas por já estarem recebendo outros benefícios %.2f%%",pn);
+	fprintf(arqtr,"Percentual de Solicitantes com renda familiar acima de meio salÃ¡rio mÃ­nimo por pessoa: %.2f%%\n",prm);
+	fprintf(arqtr,"Percentual de solicitaÃ§Ãµes aceitas com o Bolsa FamÃ­lia: %.2f%%\n",pac);
+	fprintf(arqtr,"Percentual de solicitaÃ§Ãµes Negadas por jÃ¡ estarem recebendo outros benefÃ­cios %.2f%%",pn);
 	fclose(arqptr);
 }*/
 
 main(){
 	srand(time(NULL));
     setlocale(LC_ALL, "Portuguese");
-    printf("Código  Membros Tipo \tBenefício Renda Renda/p\tSituação da solicitação\n");
+    printf("CÃ³digo  Membros Tipo \tBenefÃ­cio Renda Renda/p\tSituaÃ§Ã£o da solicitaÃ§Ã£o\n");
     familia x[75];
     preencher(75,x);
     renda_pessoa(75,x);
@@ -136,5 +136,5 @@ main(){
     q4(75,x);
     q5(74,x);
     imprime(75,x);
-    gravacao(75,x);
+   // gravacao(75,x);
 }
